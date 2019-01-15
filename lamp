@@ -64,6 +64,12 @@ sudo apt install -y curl
 echo -e "${GREEN}PHP7.2 Package Successfully Installed${RESET}"
 echo "================================================================="
 
+# Install pip
+echo -e "${GREEN}Instaling pip...${RESET}"
+sudo apt install python-pip
+echo -e "${GREEN}pip Installed Successfully${RESET}"
+echo "================================================================="
+
 # Update the machine
 echo -e "${GREEN}Updating the System...${RESET}"
 sudo apt update
@@ -167,6 +173,13 @@ atom(){
         sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
         sudo apt update
         sudo apt install -y atom
+        # Sync Setting ATOM Package
+        apm install sync-settings
+        # Beautysh
+        pip install beautysh
+        # PHP-CS-FIXER
+        sudo wget https://cs.symfony.com/download/php-cs-fixer-v2.phar -O /usr/local/bin/php-cs-fixer
+        sudo chmod a+x /usr/local/bin/php-cs-fixer
         echo -e "${GREEN}Done...${RESET}"
         echo "================================================================="
     else
@@ -237,7 +250,7 @@ install_composer(){
 drush(){
     echo -e "${GREEN}Installing Drush...${RESET}"
     sudo wget https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar -O /usr/local/bin/drush
-    chmod +x /usr/local/bin/drush
+    sudo chmod +x /usr/local/bin/drush
     composer clearcache
     composer global require drush/drush
     echo -e "${GREEN}Done...${RESET}"
@@ -270,13 +283,19 @@ clam() {
 
 }
 
-# Install GNOME Tweak Tool
+# Install Additional Packages
 tweak_tool(){
-    echo -e "${GREEN}Installing Tweak Tool...${RESET}"
+    echo -e "${GREEN}Installing Additional Packages...${RESET}"
     sudo apt install -y gnome-tweak-tool
     sudo apt install -y dos2unix
     sudo apt install -y apcalc
     sudo apt install -y putty-tools
+    # Installing Latest Git
+    sudo add-apt-repository ppa:git-core/ppa
+    sudo apt update
+    sudo apt install -y git
+    # Instaling MELD
+    sudo apt install -y meld
     echo -e "${GREEN}Done...${RESET}"
     echo "================================================================="
 }
