@@ -3,7 +3,7 @@
 ## Table of Contents
 
 <details>
-  <summary>lamp</summary>
+  <summary>LAMP Stack Installation</summary>
   <p>Install the Apache, PHP7.2, MySQL, PhpMyAdmin and Additional Packages.</p>
 
 ## Download the script
@@ -26,18 +26,26 @@ chmod a+x ~/lamp
 
 </details>
 <details>
-  <summary>permission</summary>
+  <summary>MySQL DB Backup Script</summary>
   <p></p>
 </details>
 <details>
-  <summary>upgrade</summary>
+  <summary>Directory Permission</summary>
   <p></p>
 </details>
 <details>
-  <summary>vim-bootstrap</summary>
+  <summary>Source Code Backup Script</summary>
   <p></p>
 </details>
 <details>
-  <summary>virtualhost</summary>
+  <summary>System Upgrade (Ubuntu)</summary>
+  <p></p>
+</details>
+<details>
+  <summary>VIM Bootstrap</summary>
+  <p></p>
+</details>
+<details>
+  <summary>Virtual Host Creation</summary>
   <p></p>
 </details>

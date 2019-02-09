@@ -48,8 +48,6 @@ sudo apt install -y php7.2-curl
 sudo apt install -y php7.2-json
 sudo apt install -y php7.2-cgi
 sudo apt install -y php7.2-bz2
-sudo apt install -y php7.2-cli
-sudo apt install -y php7.2-common
 sudo apt install -y php7.2-gd
 sudo apt install -y php7.2-mbstring
 sudo apt install -y php7.2-xml
@@ -58,7 +56,6 @@ sudo apt install -y php7.2-zip
 sudo apt install -y php-curl
 sudo apt install -y php-json
 sudo apt install -y php-cgi
-sudo apt install -y libapache2-mod-php7.2
 sudo apt install -y unzip
 sudo apt install -y curl
 echo -e "${GREEN}PHP7.2 Package Successfully Installed${RESET}"
@@ -66,7 +63,7 @@ echo "================================================================="
 
 # Install pip
 echo -e "${GREEN}Instaling pip...${RESET}"
-sudo apt install python-pip
+sudo apt install -y python-pip
 echo -e "${GREEN}pip Installed Successfully${RESET}"
 echo "================================================================="
 
@@ -110,6 +107,7 @@ echo "================================================================="
 echo -e "${GREEN}Adjust the Firewall to Allow Web Traffic...${RESET}"
 sudo ufw enable
 sudo ufw allow in "Apache Full"
+sudo ufw allow in 'OpenSSH'
 echo -e "${GREEN}Firewall activated...${RESET}"
 echo "================================================================="
 
