@@ -103,14 +103,6 @@ sudo apt -y clean
 echo -e "${GREEN}Done${RESET}"
 echo "================================================================="
 
-# Adjust the Firewall to Allow Web Traffic
-echo -e "${GREEN}Adjust the Firewall to Allow Web Traffic...${RESET}"
-sudo ufw enable
-sudo ufw allow in "Apache Full"
-sudo ufw allow in 'OpenSSH'
-echo -e "${GREEN}Firewall activated...${RESET}"
-echo "================================================================="
-
 # Install phpMyAdmin
 if [[ $(dpkg-query -W -f='${Status}' phpmyadmin 2>/dev/null | grep -c "ok installed") -eq 0 ]]
 then
@@ -278,7 +270,17 @@ clam() {
     echo -e "${GREEN}Done...${RESET}"
     echo -e "Run Scan: ${YELLOW}clamscan --infected --remove --recursive /home${RESET}"
     echo "================================================================="
+}
 
+# Install Postfix
+postfix() {
+    echo -e "${GREEN}Installing Postfix...${RESET}"
+    sudo apt-get update
+    sudo apt-get install -y postfix
+    sudo apt-get install -y mailutils
+    sudo systemctl restart postfix.service
+    echo -e "${GREEN}Done...${RESET}"
+    echo "================================================================="
 }
 
 # Install Additional Packages
@@ -309,6 +311,7 @@ all(){
     drush
     wp_cli
     clam
+    postfix
     tweak_tool
 }
 
@@ -329,9 +332,10 @@ show_menus() {
     echo -e ${CYAN}"9. Drush"${RESET}
     echo -e ${CYAN}"10. WP CLI"${RESET}
     echo -e ${CYAN}"11. Install Clam AntiVirus"${RESET}
-    echo -e ${CYAN}"12. Gnome Tweak Tool"${RESET}
-    echo -e ${CYAN}"13. Install all the above Packages"${RESET}
-    echo -e ${CYAN}"14. Exit"${RESET}
+    echo -e ${CYAN}"12. Install Postfix"${RESET}
+    echo -e ${CYAN}"13. Gnome Tweak Tool"${RESET}
+    echo -e ${CYAN}"14. Install all the above Packages"${RESET}
+    echo -e ${CYAN}"15. Exit"${RESET}
 }
 # Read input from the keyboard and take a action
 read_options(){
@@ -349,9 +353,10 @@ read_options(){
         9) drush ;;
         10) wp_cli ;;
         11) clam ;;
-        12) tweak_tool ;;
-        13) all ;;
-        14) exit 0;;
+        12) postfix ;;
+        13) tweak_tool ;;
+        14) all ;;
+        15) exit 0;;
         *) echo -e "${RED}Error...${RESET}" && sleep 2
     esac
 }
